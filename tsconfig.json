@@ -1,0 +1,16 @@
+{
+  "extends": "@tsconfig/node18",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+    "removeComments": true,
+    "allowJs": true,
+    "declaration": false,
+    
+    "outDir": "./build/",
+  },
+  "exclude": [
+    "migrations"
+  ]
+}
