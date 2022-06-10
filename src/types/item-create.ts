@@ -14,3 +14,7 @@ export const itemCreate = Type.Object({
 })
 
 export type TItemCreate = Static<typeof itemCreate>
+
+export const SItemCreate = {
+  body: Type.Strict(itemCreate)
+}

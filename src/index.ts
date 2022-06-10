@@ -1,4 +1,5 @@
 import fastify, { FastifyInstance } from "fastify";
+import { bootstrap } from "fastify-decorators";
 import path from "node:path";
 import { AppDataSource } from "./data-source";
 import { Items } from "./model";
@@ -8,6 +9,12 @@ import { TItemHardDelete } from "./types/item-hard-delete";
 
 
 const app: FastifyInstance = fastify({ logger: true })
+
+
+app.register(bootstrap, {
+  directory: path.resolve(__dirname, `controllers`),
+  mask: ".controller.",
+});
 
 // クライアント(static)
 
@@ -24,23 +31,13 @@ app.get('/api/v1', async (request, reply) => {
     reply.type('application/json').code(200)
     return {hello: 'world'}
 })
-
-app.get('/api/v1/item/list.raw', async (request, reply) => {
-    reply.type('application/json').code(200)
-    return await Items.find()
-})
-
-app.get('/api/v1/item/list', async (request, reply) => {
-  reply.type('application/json').code(200)
-  return await ItemList()
-})
-
+/*
 app.post<{ Body: TItemHardDelete }>('/api/v1/item/hard-delete', async (request, reply) => {
   reply.type('application/json').code(204)
   console.log(request.body)
   return await Items.delete({id: request.body.id})
-})
-
+})*/
+/*
 app.post<{ Body: TItemCreate }>('/api/v1/item/create' , async (request, reply) => {
     reply.type('application/json').code(204)
     console.log(request.body)
@@ -56,7 +53,7 @@ app.post<{ Body: TItemCreate }>('/api/v1/item/create' , async (request, reply) =
         serial: request.body.serial,
         model: request.body.model,
     })
-})
+})*/
 
 function appStart() {
     app.listen(3000, (err, address) => {

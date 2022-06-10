@@ -1,27 +1,36 @@
 {
   "name": "eadm",
   "version": "0.0.0",
+  "private": "true",
   "main": "index.js",
   "repository": "git@github.com:eadm-dev/eadm.git",
   "author": "sousuke0422 <sousuke20xx@gmail.com>",
   "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "init": "yarn ts-node --files ./node_modules/typeorm/cli.js migration:run -d ./src/data-source.ts",
-    "migration": "yarn ts-node --files ./node_modules/typeorm/cli.js migration:run -d ./src/data-source.ts"
+    "migration": "yarn ts-node --files ./node_modules/typeorm/cli.js migration:run -d ./src/data-source.ts",
+    "build:client": "cd packages/client && yarn build"
   },
   "devDependencies": {
     "@tsconfig/node18": "^1.0.0",
     "@types/node": "^17.0.38",
     "@types/uuid": "^8.3.4",
+    "@vue/cli": "^5.0.4",
     "ts-node": "^10.7.0",
     "typescript": "^4.7.2"
   },
   "dependencies": {
+    "@fastify/static": "^5.0.2",
     "@sinclair/typebox": "^0.23.5",
     "better-sqlite3": "^7.5.3",
     "fastify": "^3.29.0",
+    "fastify-decorators": "^3.11.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.3.6",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "webpack": "^5.72.1"
   }
 }
